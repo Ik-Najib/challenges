@@ -1,0 +1,8 @@
+const prompt = require("prompt-sync")()
+A = Number(prompt("entrer A:" ))
+B = Number(prompt("enter B:" ))
+console.log(A + B)
+console.log(A - B)
+console.log(A * B)
+console.log(A / B)
+console.log(A % B)

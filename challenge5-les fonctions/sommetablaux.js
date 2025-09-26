@@ -1,17 +1,16 @@
-const prompt = require("prompt-sync")()
+const prompt = require('prompt-sync')()
 
 let tab = []
 
-for(let i = 0 ; i < 5 ; i++){
-   tab[i] = Number(prompt("Entre numero "+ (i+1) + ": ")) 
-}
+for (let i = 0; i< 3; i++){
+    tab[i]= Number(prompt("entre un nobmre "))
 
-function sommeTableau(Tableau){
-    let somme = 0
-    for(let i = 0 ; i < Tableau.length ; i++){
-        somme = somme + Tableau[i]
+}
+function sumtab(tab){
+    let sum = 0
+    for (let i = 0 ;i < tab.length; i++){
+        sum = sum + tab[i]
     }
-    return somme
+    return sum
 }
-
-console.log(sommeTableau(tab));
+console.log("le somme est: "+ sumtab(tab))

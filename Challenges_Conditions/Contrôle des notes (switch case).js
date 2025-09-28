@@ -4,7 +4,7 @@ let g
 switch(true){
     case a >= 90 && a <= 100:
         console.log("A")
-    break;
+    //break;
     case a >= 80 && a < 90:
         console.log("B")
         break;

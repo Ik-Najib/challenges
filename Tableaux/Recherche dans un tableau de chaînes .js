@@ -13,5 +13,5 @@ if (!(a.includes(b))){
     console.log("nom pas trouve")
 }
 else{
-    console.log("le nom" + b+ "a ete trouver a la position "(a.indexof(b)+1)) 
+    console.log("le nom" + b+ "a ete trouver a la position "+(a.indexOf(b)+1)) 
 }

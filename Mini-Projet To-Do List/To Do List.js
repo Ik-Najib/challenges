@@ -50,12 +50,15 @@ function modify(){
         }  
 function supremer(){
    let xs = prompt("enter the id of the task u want to delete: " )
-         if ((list.find(({id})=>id == xs))){
-            console.log(list.find(({id})=> id))
-            conf = prompt("do u really want to delete this task  \n click c to continue.  ")
+
+         if (list.find(({id})=>id == xs ) !== undefined){
+            let index1 = list.findIndex(task => task.id == xs);
+            console.log(list.findIndex(task => task.id == xs));
+            console.log("do u really want to delete this task ");
+            conf = prompt("click c to continue.  ")
             if (conf == "c"){
-            let index1 = list.findIndex(task => task.id === xs);
                list.splice(index1)
+               console.log("one item was deleted succefully; ")
                console.log(list)
                 }
             }
@@ -100,27 +103,3 @@ while (test){
       console.log("merci pour votre visit")
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

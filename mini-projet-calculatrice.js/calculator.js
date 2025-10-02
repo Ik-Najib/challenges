@@ -49,6 +49,7 @@ function puissance(a,b){
 
 function sqred(a){
     a = Number(prompt("enter A :"))
+    if (a < 0) "error"
     result = Math.sqrt(a)
     console.log(`${a}=`, result)
     history.push(result)

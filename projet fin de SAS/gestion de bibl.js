@@ -1,12 +1,12 @@
 const prompt = require("prompt-sync")()
 let valid = [1,2]
 let x
+let library = []
 running = true
 menu2running = true
+let subscribers = []
 
-let subscribers = [
-    {id: "ihhd", family_Name: "iknioun", first_Name: "Najib", Email: "tyuiophjkl" }
-]
+
 function addsub(){
     let id = prompt("Id: ")
     let family_Name = prompt("Family Name: ")
@@ -24,58 +24,50 @@ function addsub(){
             console.log("Click q to go to the menu")            
 }
 
-function borrow () {
-let x = prompt("Borrower's Id: ")
-for (i in subscribers){
-    if(x==subscribers[i].id){
-        console.log(subscribers[i].id)
-        let y = prompt("book's Id")
-        for (i in library){ 
-        if (y !== library[i].id || library[i].available == "No"){
-            console.log("Book you'are looking for not available")
-        }else {
-            library[i].available = "No"
+function Subscribers(){
+    for (i in subscribers){
+        if (subscribers.length == 0){
+        console.log("No Subscribers Yet.")
+        }else{ 
+            console.log(`${subscribers[i].id} - ${subscribers[i].family_Name} - ${subscribers[i].first_Name} - ${subscribers[i].Email}`)
         }
     }
-    }else {
-        console.log("no result was found. ")
-        console.log("Click 1 to add a New subscription")
-        console.log("or Click 2 to go back to back to menu")
-       let a = prompt(" ")
-    
-    while ( a !== "1" && a !== "2"){
-         addsub()
-    }
-
 }
-} }  
-function listsofB(){ 
-    do { 
 
-    let menu2 = prompt("1 =  Search  \n 2 = List\n 3 = See Available Books \n4 = sort (A-Z,Z-A) \n...:")
+function borrow () {
+    let x = prompt("Borrower's Id: ")
+    for (i in subscribers){
+        if (subscribers.length==0){
+            console.log("no subs Yet")
+        }
+        if(x==subscribers[i].id){
+            console.log(`${subscribers[i].id} - ${subscribers[i].family_Name} - ${subscribers[i].first_Name} - ${subscribers[i].Email}`)
 
-    switch (menu2){
-        case "1":
-                Search()
-                menu2running = false
-        break;
-        case "2":
-                listofbooks()
-                menu2running = false
-        break;
-        case "3":
-                available()
-                menu2running = false
-        break;
-        case "4":
-            sort()
-            menu2running = false
-        default:
-            console.log("invalid input chose one of the options below. ")
-    }
+            let y = prompt("book's Id: ")
+            for (i in library){ 
+                if (library.length==0){
+                    console.log("no books in library yet")
+                }
+                if (y !== library[i].id || library[i].available == "No"){
+                    console.log("the Book you are looking for not available")
+                }else {
+                    library[i].available = "No"
+                }
+            }
+        }else {
+                    console.log("no result was found. ")
+                    console.log("Click 1 to add a New subscription")
+                    console.log("or Click 2 to go back to back to menu")
+                let a = prompt(" ")
+                
+                while ( a !== "1" && a !== "2"){
+                    addsub()
+                    a = 1
+                }
 
-}while( menu2running == true)
-}
+            }
+}   }  
+
 function addbook(){
     do{
         let id = prompt("Book's Id... ")
@@ -85,7 +77,8 @@ function addbook(){
         
         let available
         do{
-            available  = prompt("Is the book available? \n Click 1 if YES.\n Click 2 if NO. ")
+            console.log("Is the book available? \n Click 1 if YES.\n Click 2 if NO. ")
+            available  = prompt("... ")
             if (available == valid[0] ) {
                     available = "Yes"
                 }else if(available == valid[1]){
@@ -131,11 +124,12 @@ function sort(){
 }
 
 function available(){
-    let filterdarray =  library.filter((book)=> {
+    let filterdarray =  library.filter(function (book) {
      return book.available == "Yes"
     })
      console.log(filterdarray)
 }
+
 function Search(){
             let x = (prompt("Book's Id : "))
             let book = []
@@ -152,6 +146,7 @@ function Search(){
             }
 }
 function listofbooks(){
+
     if (library.length==0){
         console.log("No books in the library yet.")
     }else{ 
@@ -159,26 +154,35 @@ function listofbooks(){
             console.log(`${library[i].id}- ${library[i].title} - ${library[i].author} - ${library[i].year}- ${library[i].available}`)
         }
     }}
+
 while (running){
-    console.log("(To-Do List) \n1 = add books  \n2 = Books \n3 = Search For A Book  \n4 = see available Books \n5 = Borrow \n0 = quiter n\....")
-    let operation = Number(prompt(": " ))
+    console.log("(Menu) \n1 = add books  \n2 = Books \n3 = Search For A Book  \n4 = see available Books \n5 = Borrow \n6 = sort A-Z \n7 = New Sub \n8 = list of subs \n0 = quiter n\....")
+    let operation = (prompt(": " ))
 if (operation !== 0){ 
     switch(operation){
-        case 1:
+        case "1":
             addbook()
             break;
-        case 2:
-            listsofB()
+        case "2":
+            listofbooks()
             break;
-        case 3:
+        case "3":
             Search()
             break;
-        case 4:
-            availble()
+        case "4":
+            available()
             break;
-        case 5:
+        case "5":
              borrow ()
             break;
+        case "6":
+            sort ()
+            break;
+        case "7":
+            addsub()
+            break;
+        case "8":
+            Subscribers()
         default:
             console.log("Invalid Input")
     }
@@ -186,6 +190,7 @@ if (operation !== 0){
     running = false
       console.log("Quiting...")
     }}
+    
 
 
     
